@@ -1,5 +1,5 @@
-#ifndef _FUNCTIONS_STRING_H
-#define _FUNCTIONS_STRING_H
+#ifndef _QLIB_STRINGS_H
+#define _QLIB_STRINGS_H
 
 // Copies a string from one memory location to an other memory location.
 

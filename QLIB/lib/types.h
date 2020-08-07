@@ -1,5 +1,5 @@
-#ifndef _bool_TYPES_H
-#define _bool_TYPES_H
+#ifndef _QLIB_TYPES_H
+#define _QLIB_TYPES_H
 
 #ifndef bool
 #define bool unsigned char

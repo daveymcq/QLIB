@@ -1,5 +1,5 @@
-#ifndef _MEMORY_H
-#define _MEMORY_H
+#ifndef _QLIB_MEMORY_H
+#define _QLIB_MEMORY_H
 
 // Zero out a memory location.
 

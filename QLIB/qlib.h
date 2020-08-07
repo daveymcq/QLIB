@@ -1,5 +1,5 @@
-#ifndef _ALL_FUNCTIONS_H
-#define _ALL_FUNCTIONS_H
+#ifndef _QLIB_H
+#define _QLIB_H
 
 #include "lib/types.h"
 #include "lib/strings.h"

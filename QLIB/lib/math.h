@@ -1,5 +1,5 @@
-#ifndef _MATH_H
-#define _MATH_H
+#ifndef _QLIB_MATH_H
+#define _QLIB_MATH_H
 
 // Returns the value of unsigned integer {base} raised to the power of {exponent}
 

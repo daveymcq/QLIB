@@ -1,5 +1,5 @@
-#ifndef _CONVERT_H
-#define _CONVERT_H
+#ifndef _QLIB_CONVERT_H
+#define _QLIB_CONVERT_H
 
 // Converts an unsigned 64 bit integer to a string.
 // Supports hexadecimal, decimal, and binary conversions.
