@@ -31,7 +31,6 @@ uint32 MemorySet(void *address, int8 value, uint32 length)
     return bytes_set;
 }
 
-
 /* Copies memory from one memory location to an other memory location. */
 
 uint32 MemoryCopy(void *to_address, void *from_address, uint32 length_in_bytes)
@@ -49,7 +48,7 @@ uint32 MemoryCopy(void *to_address, void *from_address, uint32 length_in_bytes)
     return bytes_copied;
 }
 
-bit *ByteToBits(int8 byte, bit *bit_array)
+bit *ByteToBits(uint8 byte, bit *bit_array)
 {
     static bit bits[8];
     uint8 bit;
@@ -61,7 +60,7 @@ bit *ByteToBits(int8 byte, bit *bit_array)
 
     if(bit_array)
     {
-        MemoryCopy((cstring )bit_array, (cstring )bits, sizeof(bits));
+        MemoryCopy((cstring )bit_array, (cstring)bits, sizeof(bits));
         return bit_array;
     }
 

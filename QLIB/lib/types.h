@@ -25,28 +25,25 @@
 #define false 0x00
 #endif
 
-typedef enum 
+typedef enum _INTFMT
 {
     FMT_INT_BINARY = 2,
     FMT_INT_DECIMAL = 10,
     FMT_INT_HEXADECIMAL = 16
 
-} _MCQLIBC_INTFMT;
+} INTFMT;
 
 #pragma pack(push, 1)
 
-typedef union
+typedef struct _BIT
 {
-    struct 
-    {
-        bool value : 1;
-    };
+    bool value : 1; 
 
-} _MCQLIBC_BIT;
+} BIT, bit;
 
-typedef union
+typedef union _BYTE
 {
-    struct
+    struct _BITS
     {
         bool bit_1 : 1;
         bool bit_2 : 1;
@@ -59,14 +56,10 @@ typedef union
 
     } bits;
 
-    char value;
+    int8 value;
 
-} _MCQLIBC_BYTE;
+} BYTE, byte;
 
 #pragma pack(pop)
-
-#define INTFMT _MCQLIBC_INTFMT
-#define bit _MCQLIBC_BIT
-#define byte _MCQLIBC_BYTE
 
 #endif
