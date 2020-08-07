@@ -1,7 +1,7 @@
 #ifndef _QLIB_STRINGS_H
 #define _QLIB_STRINGS_H
 
-// Copies a string from one memory location to an other memory location.
+/* Copies a string from one memory location to an other memory location. */
 
 uint32 CopyString(char *to, char *from, uint32 length)
 {
@@ -18,7 +18,7 @@ uint32 CopyString(char *to, char *from, uint32 length)
     return bytes_copied;
 }
 
-// Find length of string.
+/* Find length of string. */
 
 uint32 StringLength(const char *str)
 {
@@ -34,7 +34,7 @@ uint32 StringLength(const char *str)
     return length;
 }
 
-// Checks equality of two c-strings.
+/* Checks equality of two c-strings. */
 
 bool StringCompare(const char *string_a, const char *string_b, bool case_sensitive)
 {
@@ -54,7 +54,7 @@ bool StringCompare(const char *string_a, const char *string_b, bool case_sensiti
     return result;
 }
 
-// Checks if a string is a decimal.
+/* Checks if a string is a decimal. */
 
 bool IsDecimal(const char *str)
 {

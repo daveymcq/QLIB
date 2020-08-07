@@ -1,8 +1,8 @@
 #ifndef _QLIB_CONVERT_H
 #define _QLIB_CONVERT_H
 
-// Converts an unsigned 64 bit integer to a string.
-// Supports hexadecimal, decimal, and binary conversions.
+/* Converts an unsigned 64 bit integer to a string.
+ Supports hexadecimal, decimal, and binary conversions. */
 
 const char *UnsignedIntegerToString(uint64 integer, char *out_result, uint32 out_result_length, INTFMT base)
 {
@@ -101,8 +101,8 @@ const char *UnsignedIntegerToString(uint64 integer, char *out_result, uint32 out
     return (const char *)result;
 }
 
-// Converts a signed 64 bit integer to a string.
-// Supports hexadecimal, decimal, and binary conversions.
+/* Converts a signed 64 bit integer to a string.
+   Supports hexadecimal, decimal, and binary conversions. */
 
 const char *SignedIntegerToString(int64 integer, char *out_result, uint32 out_result_length, INTFMT base)
 {
@@ -137,8 +137,8 @@ const char *IntegerToString(int64 integer, char *out_result, uint32 out_result_l
     return SignedIntegerToString(integer, out_result, out_result_length, base);
 }
 
-// Convert double precision floating point number to a string.
-// Supports only decimal conversions.
+/* Convert double precision floating point number to a string.
+   Supports only decimal conversions. */
 
 const char *DoubleToString(double number, char *out_result, uint32 out_result_length)
 {
@@ -174,8 +174,8 @@ const char *DoubleToString(double number, char *out_result, uint32 out_result_le
     return (const char *)result;
 }
 
-// Convert string to an unsigned 64 bit integer.
-// Supports hexadecimal, decimal, and binary conversions.
+/* Convert string to an unsigned 64 bit integer.
+   Supports hexadecimal, decimal, and binary conversions. */
 
 uint64 StringToUnsignedInteger(const char *str, INTFMT base)
 {
@@ -341,8 +341,8 @@ uint64 StringToUnsignedInteger(const char *str, INTFMT base)
     return result;
 }
 
-// Convert string to a signed 64 bit integer.
-// Supports hexadecimal, decimal, and binary conversions.
+/* Convert string to a signed 64 bit integer.
+   Supports hexadecimal, decimal, and binary conversions. */
 
 int64 StringToInteger(const char *str, INTFMT base)
 {
@@ -364,8 +364,8 @@ int64 StringToInteger(const char *str, INTFMT base)
     return result;
 }
 
-// Convert string to a double precision floating point.
-// Supports only decimal conversions.
+/* Convert string to a double precision floating point.
+   Supports only decimal conversions. */
 
 double StringToDouble(const char *str) 
 {

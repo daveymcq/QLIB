@@ -1,7 +1,7 @@
 #ifndef _QLIB_MATH_H
 #define _QLIB_MATH_H
 
-// Returns the value of unsigned integer {base} raised to the power of {exponent}
+/* Returns the value of unsigned integer {base} raised to the power of {exponent} */
 
 int64 Power(int64 base, int64 exponent)
 {

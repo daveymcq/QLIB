@@ -1,7 +1,7 @@
 #ifndef _QLIB_MEMORY_H
 #define _QLIB_MEMORY_H
 
-// Zero out a memory location.
+/* Zero out a memory location. */
 
 uint32 MemoryZero(void *address, uint32 length)
 {
@@ -32,7 +32,7 @@ uint32 MemorySet(void *address, char value, uint32 length)
 }
 
 
-// Copies memory from one memory location to an other memory location.
+/* Copies memory from one memory location to an other memory location. */
 
 uint32 MemoryCopy(void *to_address, void *from_address, uint32 length_in_bytes)
 {
