@@ -3,9 +3,9 @@
 
 // Copies a string from one memory location to an other memory location.
 
-unsigned int CopyString(char *to, char *from, unsigned int length)
+uint32 CopyString(char *to, char *from, uint32 length)
 {
-    unsigned int bytes_copied = 0;
+    uint32 bytes_copied = 0;
 
     while(bytes_copied < length)
     {
@@ -20,9 +20,9 @@ unsigned int CopyString(char *to, char *from, unsigned int length)
 
 // Find length of string.
 
-unsigned int StringLength(const char *str)
+uint32 StringLength(const char *str)
 {
-    unsigned int length = 0;
+    uint32 length = 0;
     char *pstr = (char *)str;
 
     while(*pstr)
@@ -42,7 +42,7 @@ bool StringCompare(const char *string_a, const char *string_b, bool case_sensiti
 
     if(result = (StringLength(string_a) == StringLength(string_b)))
     {
-        unsigned int offset;
+        uint32 offset;
         
         for(offset = 0; result && (offset < StringLength(string_a)); offset++)
         {
@@ -60,7 +60,7 @@ bool IsDecimal(const char *str)
 {
     bool numeric = (str) ? true : false;
     char *tmpstr = (char *)str;
-    unsigned int index = 0;
+    uint32 index = 0;
 
     while((*tmpstr) && (numeric))
     {

@@ -4,14 +4,14 @@
 // Converts an unsigned 64 bit integer to a string.
 // Supports hexadecimal, decimal, and binary conversions.
 
-const char *UnsignedIntegerToString(unsigned long long integer, char *out_result, unsigned int out_result_length, INTFMT base)
+const char *UnsignedIntegerToString(uint64 integer, char *out_result, uint32 out_result_length, INTFMT base)
 {
     static char result[65];
 
     char *presult = result;
-    unsigned short value;
-    unsigned short place_values = 0;
-    unsigned short exponent = 1;
+    uint16 value;
+    uint16 place_values = 0;
+    uint16 exponent = 1;
 
     switch(base)
     {
@@ -19,7 +19,7 @@ const char *UnsignedIntegerToString(unsigned long long integer, char *out_result
 
             do
             {
-                value = (unsigned short)(integer / Power(base, exponent));
+                value = (uint16)(integer / Power(base, exponent));
                 exponent++;
                 place_values++;
 
@@ -27,7 +27,7 @@ const char *UnsignedIntegerToString(unsigned long long integer, char *out_result
 
             while(place_values)
             {
-                value = (unsigned short)(((integer % Power(base, place_values)) - (integer % Power(base, place_values - 1))) / Power(base, place_values - 1));
+                value = (uint16)(((integer % Power(base, place_values)) - (integer % Power(base, place_values - 1))) / Power(base, place_values - 1));
 
                 char data = (value | 0x30);
 
@@ -42,7 +42,7 @@ const char *UnsignedIntegerToString(unsigned long long integer, char *out_result
 
             do
             {
-                value = (unsigned short)(integer / Power(base, exponent));
+                value = (uint16)(integer / Power(base, exponent));
                 exponent++;
                 place_values++;
 
@@ -50,7 +50,7 @@ const char *UnsignedIntegerToString(unsigned long long integer, char *out_result
 
             while(place_values)
             {
-                value = (unsigned short)(((integer % Power(base, place_values)) - (integer % Power(base, place_values - 1))) / Power(base, place_values - 1));
+                value = (uint16)(((integer % Power(base, place_values)) - (integer % Power(base, place_values - 1))) / Power(base, place_values - 1));
 
                 char data = (value | 0x30);
 
@@ -65,7 +65,7 @@ const char *UnsignedIntegerToString(unsigned long long integer, char *out_result
 
             do
             {
-                value = (unsigned short)(integer / Power(base, exponent));
+                value = (uint16)(integer / Power(base, exponent));
                 exponent++;
                 place_values++;
 
@@ -73,7 +73,7 @@ const char *UnsignedIntegerToString(unsigned long long integer, char *out_result
 
             while(place_values)
             {
-                value = (unsigned short)(((integer % Power(base, place_values)) - (integer % Power(base, place_values - 1))) / Power(base, place_values - 1));
+                value = (uint16)(((integer % Power(base, place_values)) - (integer % Power(base, place_values - 1))) / Power(base, place_values - 1));
 
                 char data = (value | 0x30);
 
@@ -104,7 +104,7 @@ const char *UnsignedIntegerToString(unsigned long long integer, char *out_result
 // Converts a signed 64 bit integer to a string.
 // Supports hexadecimal, decimal, and binary conversions.
 
-const char *SignedIntegerToString(long long integer, char *out_result, unsigned int out_result_length, INTFMT base)
+const char *SignedIntegerToString(int64 integer, char *out_result, uint32 out_result_length, INTFMT base)
 {
     static char result[66];
     char *presult = (char *)result;
@@ -127,11 +127,11 @@ const char *SignedIntegerToString(long long integer, char *out_result, unsigned 
     return (char *)result;
 }
 
-const char *IntegerToString(long long integer, char *out_result, unsigned int out_result_length, INTFMT base)
+const char *IntegerToString(int64 integer, char *out_result, uint32 out_result_length, INTFMT base)
 {
     if(integer >= 0)
     {
-        return UnsignedIntegerToString((unsigned long long)integer, out_result, out_result_length, base);
+        return UnsignedIntegerToString((uint64)integer, out_result, out_result_length, base);
     }
 
     return SignedIntegerToString(integer, out_result, out_result_length, base);
@@ -140,7 +140,7 @@ const char *IntegerToString(long long integer, char *out_result, unsigned int ou
 // Convert double precision floating point number to a string.
 // Supports only decimal conversions.
 
-const char *DoubleToString(double number, char *out_result, unsigned int out_result_length)
+const char *DoubleToString(double number, char *out_result, uint32 out_result_length)
 {
     static char result[83];
     char *presult = result;
@@ -177,9 +177,9 @@ const char *DoubleToString(double number, char *out_result, unsigned int out_res
 // Convert string to an unsigned 64 bit integer.
 // Supports hexadecimal, decimal, and binary conversions.
 
-unsigned long long StringToUnsignedInteger(const char *str, INTFMT base)
+uint64 StringToUnsignedInteger(const char *str, INTFMT base)
 {
-    unsigned long long result = 0ULL;
+    uint64 result = 0ULL;
     char *pstr = (char *)str;
 
     switch(base)
@@ -197,15 +197,15 @@ unsigned long long StringToUnsignedInteger(const char *str, INTFMT base)
                 pstr += 2;
             }
 
-            unsigned short place_values = (unsigned short)StringLength(pstr);
+            uint16 place_values = (uint16)StringLength(pstr);
 
             while(place_values)
             {
-                unsigned char data;
+                uint8 data;
 
                 if((*pstr <= '1') && (*pstr >= '0'))
                 {
-                    data = (unsigned char)(*pstr & 0xF);
+                    data = (uint8)(*pstr & 0xF);
                 }
 
                 else
@@ -214,15 +214,15 @@ unsigned long long StringToUnsignedInteger(const char *str, INTFMT base)
                     break;
                 }
 
-                unsigned long long power = 1ULL;
-                unsigned short i;
+                uint64 power = 1ULL;
+                uint16 i;
 
-                for(i = (unsigned short)power; i < place_values; i++)
+                for(i = (uint16)power; i < place_values; i++)
                 {
                     power *= base;
                 }
 
-                result += (unsigned long long)(data * power);
+                result += (uint64)(data * power);
 
                 place_values--;
                 pstr++;
@@ -245,15 +245,15 @@ unsigned long long StringToUnsignedInteger(const char *str, INTFMT base)
                 break;
             }
 
-            unsigned short place_values = (unsigned short)StringLength(pstr);
+            uint16 place_values = (uint16)StringLength(pstr);
 
             while(place_values)
             {
-                unsigned char data;
+                uint8 data;
 
                 if((*pstr <= '9') && (*pstr >= '0'))
                 {
-                    data = (unsigned char)(*pstr & 0xF);
+                    data = (uint8)(*pstr & 0xF);
                 }
 
                 else
@@ -262,15 +262,15 @@ unsigned long long StringToUnsignedInteger(const char *str, INTFMT base)
                     break;
                 }
 
-                unsigned long long power = 1ULL;
-                unsigned short i;
+                uint64 power = 1ULL;
+                uint16 i;
 
-                for(i = (unsigned short)power; i < place_values; i++)
+                for(i = (uint16)power; i < place_values; i++)
                 {
                     power *= base;
                 }
 
-                result += (unsigned long long)(data * power);
+                result += (uint64)(data * power);
 
                 place_values--;
                 pstr++;
@@ -292,20 +292,20 @@ unsigned long long StringToUnsignedInteger(const char *str, INTFMT base)
                 break;
             }
 
-            unsigned short place_values = (unsigned short)StringLength(pstr);
+            uint16 place_values = (uint16)StringLength(pstr);
 
             while(place_values)
             {
-                unsigned char data;
+                uint8 data;
 
                 if((*pstr <= 'f') && (*pstr >= 'A'))
                 {
-                    data = (unsigned char)((*pstr | 0x20) - 0x57);
+                    data = (uint8)((*pstr | 0x20) - 0x57);
                 }
 
                 else if((*pstr <= '9') && (*pstr >= '0'))
                 {
-                    data = (unsigned char)(*pstr & 0xF);
+                    data = (uint8)(*pstr & 0xF);
                 }
 
                 else
@@ -314,15 +314,15 @@ unsigned long long StringToUnsignedInteger(const char *str, INTFMT base)
                     break;
                 }
 
-                unsigned long long power = 1ULL;
-                unsigned short i;
+                uint64 power = 1ULL;
+                uint16 i;
 
-                for(i = (unsigned short)power; i < place_values; i++)
+                for(i = (uint16)power; i < place_values; i++)
                 {
                     power *= base;
                 }
 
-                result += (unsigned long long)(data * power);
+                result += (uint64)(data * power);
 
                 place_values--;
                 pstr++;
@@ -344,9 +344,9 @@ unsigned long long StringToUnsignedInteger(const char *str, INTFMT base)
 // Convert string to a signed 64 bit integer.
 // Supports hexadecimal, decimal, and binary conversions.
 
-long long StringToInteger(const char *str, INTFMT base)
+int64 StringToInteger(const char *str, INTFMT base)
 {
-    long long result = 0LL;
+    int64 result = 0LL;
     char *pstr = (char *)str;
     bool negative = (*pstr == '-');
 
@@ -373,9 +373,9 @@ double StringToDouble(const char *str)
 
     char *pstr = (char *)str;
 
-    short exponent = 0;
-    unsigned short number_of_digits = 0;
-    unsigned short number_of_decimals = 0;
+    int16 exponent = 0;
+    uint16 number_of_digits = 0;
+    uint16 number_of_decimals = 0;
     double power = 10.0;
 
     bool negative = false;

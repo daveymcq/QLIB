@@ -3,9 +3,9 @@
 
 // Returns the value of unsigned integer {base} raised to the power of {exponent}
 
-long long Power(long long base, long long exponent)
+int64 Power(int64 base, int64 exponent)
 {
-    long long result = 1LL;
+    int64 result = 1LL;
 
     while(exponent)
     {

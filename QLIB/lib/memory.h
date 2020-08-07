@@ -3,9 +3,9 @@
 
 // Zero out a memory location.
 
-unsigned int MemoryZero(void *address, unsigned long long length)
+uint32 MemoryZero(void *address, uint32 length)
 {
-    unsigned int bytes_zeroed = 0;
+    uint32 bytes_zeroed = 0;
     char *paddress = (char *)address;
 
     while(length) 
@@ -17,9 +17,9 @@ unsigned int MemoryZero(void *address, unsigned long long length)
     return bytes_zeroed;
 }
 
-unsigned int MemorySet(void *address, char value, unsigned int length)
+uint32 MemorySet(void *address, char value, uint32 length)
 {
-    unsigned int bytes_set = 0;
+    uint32 bytes_set = 0;
     char *paddress = (char *)address;
 
     while(bytes_set < length)
@@ -34,9 +34,9 @@ unsigned int MemorySet(void *address, char value, unsigned int length)
 
 // Copies memory from one memory location to an other memory location.
 
-unsigned int MemoryCopy(void *to_address, void *from_address, unsigned int length_in_bytes)
+uint32 MemoryCopy(void *to_address, void *from_address, uint32 length_in_bytes)
 {
-    unsigned int bytes_copied = 0;
+    uint32 bytes_copied = 0;
     char *pto = (char *)to_address;
     char *pfrom = (char *)from_address;
 
