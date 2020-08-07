@@ -9,7 +9,7 @@ uint32 CopyString(cstring to, cstring from, uint32 length)
 
     while(bytes_copied < length)
     {
-        char byte = (to[bytes_copied] = from[bytes_copied]);
+        uint8 byte = (to[bytes_copied] = from[bytes_copied]);
         ++bytes_copied;
 
         if(!byte) break;
@@ -18,12 +18,12 @@ uint32 CopyString(cstring to, cstring from, uint32 length)
     return bytes_copied;
 }
 
-/* Find length of string. */
+/* Find length of string. Rewrite of libc strlen(). */
 
 uint32 StringLength(const cstring str)
 {
     uint32 length = 0;
-    cstring pstr = (cstring )str;
+    cstring pstr = (cstring)str;
 
     while(*pstr)
     {
@@ -56,7 +56,7 @@ bool StringCompare(const cstring string_a, const cstring string_b, bool case_sen
 
 /* Finds first occurrence of a string within another string. Returns the index into the string or zero if non existent. */
 
-int32 FindFirstOccurrenceOfString(cstring haystack, cstring needle, bool case_sensitive)
+int32 FindFirstOccurrenceOfString(const cstring haystack, const cstring needle, bool case_sensitive)
 {
     int32 index = 0;
     uint32 needle_length = StringLength(needle);
@@ -74,8 +74,9 @@ int32 FindFirstOccurrenceOfString(cstring haystack, cstring needle, bool case_se
 
     while(index < haystack_length)
     {
-        char haystack_section[StringLength(haystack) + 1];
-        CopyString(haystack_section, haystack, StringLength(haystack));
+        uint32 len = StringLength(haystack);
+        char haystack_section[len + 1];
+        CopyString((cstring)haystack_section, (cstring)haystack, len);
         haystack_section[needle_length] = 0;
 
         if(StringCompare(haystack_section, needle, case_sensitive))
@@ -95,7 +96,7 @@ int32 FindFirstOccurrenceOfString(cstring haystack, cstring needle, bool case_se
 bool IsDecimal(const cstring str)
 {
     bool numeric = (str) ? true : false;
-    cstring tmpstr = (cstring )str;
+    cstring tmpstr = (cstring)str;
     uint32 index = 0;
 
     while((*tmpstr) && (numeric))

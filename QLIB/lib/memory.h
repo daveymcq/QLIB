@@ -17,6 +17,8 @@ uint32 MemoryZero(void *address, uint32 length)
     return bytes_zeroed;
 }
 
+/* Rewrite of libc memset(). */
+
 uint32 MemorySet(void *address, int8 value, uint32 length)
 {
     uint32 bytes_set = 0;
@@ -47,6 +49,8 @@ uint32 MemoryCopy(void *to_address, void *from_address, uint32 length_in_bytes)
 
     return bytes_copied;
 }
+
+/* Bitwies functions. Bits to bytes and vice-versa. */
 
 bit *ByteToBits(uint8 byte, bit *bit_array)
 {
