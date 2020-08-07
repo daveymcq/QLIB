@@ -54,6 +54,42 @@ bool StringCompare(const cstring string_a, const cstring string_b, bool case_sen
     return result;
 }
 
+/* Finds first occurrence of a string within another string. Returns the index into the string or zero if non existent. */
+
+int32 FindFirstOccurrenceOfString(cstring haystack, cstring needle, bool case_sensitive)
+{
+    int32 index = 0;
+    uint32 needle_length = StringLength(needle);
+    uint32 haystack_length = StringLength(haystack);
+
+    if(haystack_length > 2048)
+    {
+        return -1; 
+    }
+
+    if(needle_length > haystack_length)
+    {
+        return -1; 
+    }
+
+    while(index < haystack_length)
+    {
+        char haystack_section[StringLength(haystack) + 1];
+        CopyString(haystack_section, haystack, StringLength(haystack));
+        haystack_section[needle_length] = 0;
+
+        if(StringCompare(haystack_section, needle, case_sensitive))
+        {
+            return index; 
+        }
+
+        index++;
+        haystack++;
+    }
+
+    return 0; 
+}
+
 /* Checks if a string is a decimal. */
 
 bool IsDecimal(const cstring str)

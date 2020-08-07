@@ -36,8 +36,8 @@ uint32 MemorySet(void *address, int8 value, uint32 length)
 uint32 MemoryCopy(void *to_address, void *from_address, uint32 length_in_bytes)
 {
     uint32 bytes_copied = 0;
-    cstring pto = (cstring )to_address;
-    cstring pfrom = (cstring )from_address;
+    cstring pto = (cstring)to_address;
+    cstring pfrom = (cstring)from_address;
 
     while(length_in_bytes - bytes_copied)
     {
@@ -60,7 +60,7 @@ bit *ByteToBits(uint8 byte, bit *bit_array)
 
     if(bit_array)
     {
-        MemoryCopy((cstring )bit_array, (cstring)bits, sizeof(bits));
+        MemoryCopy((cstring)bit_array, (cstring)bits, sizeof(bits));
         return bit_array;
     }
 
