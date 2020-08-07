@@ -1,6 +1,18 @@
 #ifndef _QLIB_TYPES_H
 #define _QLIB_TYPES_H
 
+#define uint8 unsigned char
+#define uint16 unsigned short
+#define uint32 unsigned int
+#define uint64 unsigned long long
+
+#define int8  char
+#define int16 short
+#define int32 int
+#define int64 long long
+
+#define cstring char *
+
 #ifndef bool
 #define bool unsigned char
 #endif
@@ -53,30 +65,8 @@ typedef union
 
 #pragma pack(pop)
 
-#ifdef INTFMT
-#undef INTFMT
-#endif
-
-#ifdef bit
-#undef bit
-#endif
-
-#ifdef byte
-#undef byte
-#endif
-
 #define INTFMT _MCQLIBC_INTFMT
 #define bit _MCQLIBC_BIT
 #define byte _MCQLIBC_BYTE
-
-#define uint8 unsigned char
-#define uint16 unsigned short
-#define uint32 unsigned int
-#define uint64 unsigned long long
-
-#define int8  char
-#define int16 short
-#define int32 int
-#define int64 long long
 
 #endif

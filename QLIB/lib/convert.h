@@ -4,11 +4,11 @@
 /* Converts an unsigned 64 bit integer to a string.
  Supports hexadecimal, decimal, and binary conversions. */
 
-const char *UnsignedIntegerToString(uint64 integer, char *out_result, uint32 out_result_length, INTFMT base)
+cstring UnsignedIntegerToString(uint64 integer, cstring out_result, uint32 out_result_length, INTFMT base)
 {
     static char result[65];
 
-    char *presult = result;
+    cstring presult = result;
     uint16 value;
     uint16 place_values = 0;
     uint16 exponent = 1;
@@ -29,7 +29,7 @@ const char *UnsignedIntegerToString(uint64 integer, char *out_result, uint32 out
             {
                 value = (uint16)(((integer % Power(base, place_values)) - (integer % Power(base, place_values - 1))) / Power(base, place_values - 1));
 
-                char data = (value | 0x30);
+                int8 data = (value | 0x30);
 
                 *presult = data;
                 presult++;
@@ -75,7 +75,7 @@ const char *UnsignedIntegerToString(uint64 integer, char *out_result, uint32 out
             {
                 value = (uint16)(((integer % Power(base, place_values)) - (integer % Power(base, place_values - 1))) / Power(base, place_values - 1));
 
-                char data = (value | 0x30);
+                int8 data = (value | 0x30);
 
                 if(value > 9)
                 {
@@ -95,19 +95,19 @@ const char *UnsignedIntegerToString(uint64 integer, char *out_result, uint32 out
     if(out_result)
     {
         MemoryCopy(out_result, result, out_result_length);
-        return (const char *)out_result;
+        return (cstring)out_result;
     }
 
-    return (const char *)result;
+    return (cstring)result;
 }
 
 /* Converts a signed 64 bit integer to a string.
    Supports hexadecimal, decimal, and binary conversions. */
 
-const char *SignedIntegerToString(int64 integer, char *out_result, uint32 out_result_length, INTFMT base)
+cstring SignedIntegerToString(int64 integer, cstring out_result, uint32 out_result_length, INTFMT base)
 {
     static char result[66];
-    char *presult = (char *)result;
+    cstring presult = (cstring )result;
     bool negative = (integer < 0);
 
     if(negative)
@@ -121,13 +121,13 @@ const char *SignedIntegerToString(int64 integer, char *out_result, uint32 out_re
     if(out_result)
     {
         MemoryCopy(out_result, result, out_result_length);
-        return (const char *)out_result;
+        return (cstring)out_result;
     }
 
-    return (char *)result;
+    return (cstring )result;
 }
 
-const char *IntegerToString(int64 integer, char *out_result, uint32 out_result_length, INTFMT base)
+cstring IntegerToString(int64 integer, cstring out_result, uint32 out_result_length, INTFMT base)
 {
     if(integer >= 0)
     {
@@ -140,14 +140,14 @@ const char *IntegerToString(int64 integer, char *out_result, uint32 out_result_l
 /* Convert double precision floating point number to a string.
    Supports only decimal conversions. */
 
-const char *DoubleToString(double number, char *out_result, uint32 out_result_length)
+const cstring DoubleToString(double number, cstring out_result, uint32 out_result_length)
 {
     static char result[83];
-    char *presult = result;
+    cstring presult = result;
 
     bool negative = (number < 0);
 
-    long long whole = (long long)number;
+    int64 whole = (long long)number;
     double fraction = (number - whole);
 
     INTFMT format = FMT_INT_DECIMAL;
@@ -168,19 +168,19 @@ const char *DoubleToString(double number, char *out_result, uint32 out_result_le
     if(out_result)
     {
         MemoryCopy(out_result, result, out_result_length);
-        return (const char *)out_result;
+        return (const cstring )out_result;
     }
 
-    return (const char *)result;
+    return (cstring)result;
 }
 
 /* Convert string to an unsigned 64 bit integer.
    Supports hexadecimal, decimal, and binary conversions. */
 
-uint64 StringToUnsignedInteger(const char *str, INTFMT base)
+uint64 StringToUnsignedInteger(const cstring str, INTFMT base)
 {
     uint64 result = 0ULL;
-    char *pstr = (char *)str;
+    cstring pstr = (cstring )str;
 
     switch(base)
     {
@@ -344,10 +344,10 @@ uint64 StringToUnsignedInteger(const char *str, INTFMT base)
 /* Convert string to a signed 64 bit integer.
    Supports hexadecimal, decimal, and binary conversions. */
 
-int64 StringToInteger(const char *str, INTFMT base)
+int64 StringToInteger(const cstring str, INTFMT base)
 {
     int64 result = 0LL;
-    char *pstr = (char *)str;
+    cstring pstr = (cstring )str;
     bool negative = (*pstr == '-');
 
     if(negative)
@@ -367,11 +367,11 @@ int64 StringToInteger(const char *str, INTFMT base)
 /* Convert string to a double precision floating point.
    Supports only decimal conversions. */
 
-double StringToDouble(const char *str) 
+double StringToDouble(const cstring str) 
 {
     double result = 0.0;
 
-    char *pstr = (char *)str;
+    cstring pstr = (cstring )str;
 
     int16 exponent = 0;
     uint16 number_of_digits = 0;

@@ -3,7 +3,7 @@
 
 /* Copies a string from one memory location to an other memory location. */
 
-uint32 CopyString(char *to, char *from, uint32 length)
+uint32 CopyString(cstring to, cstring from, uint32 length)
 {
     uint32 bytes_copied = 0;
 
@@ -20,10 +20,10 @@ uint32 CopyString(char *to, char *from, uint32 length)
 
 /* Find length of string. */
 
-uint32 StringLength(const char *str)
+uint32 StringLength(const cstring str)
 {
     uint32 length = 0;
-    char *pstr = (char *)str;
+    cstring pstr = (cstring )str;
 
     while(*pstr)
     {
@@ -36,7 +36,7 @@ uint32 StringLength(const char *str)
 
 /* Checks equality of two c-strings. */
 
-bool StringCompare(const char *string_a, const char *string_b, bool case_sensitive)
+bool StringCompare(const cstring string_a, const cstring string_b, bool case_sensitive)
 {
     bool result;
 
@@ -56,10 +56,10 @@ bool StringCompare(const char *string_a, const char *string_b, bool case_sensiti
 
 /* Checks if a string is a decimal. */
 
-bool IsDecimal(const char *str)
+bool IsDecimal(const cstring str)
 {
     bool numeric = (str) ? true : false;
-    char *tmpstr = (char *)str;
+    cstring tmpstr = (cstring )str;
     uint32 index = 0;
 
     while((*tmpstr) && (numeric))

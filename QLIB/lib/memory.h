@@ -6,7 +6,7 @@
 uint32 MemoryZero(void *address, uint32 length)
 {
     uint32 bytes_zeroed = 0;
-    char *paddress = (char *)address;
+    cstring paddress = (cstring)address;
 
     while(length) 
     {
@@ -17,10 +17,10 @@ uint32 MemoryZero(void *address, uint32 length)
     return bytes_zeroed;
 }
 
-uint32 MemorySet(void *address, char value, uint32 length)
+uint32 MemorySet(void *address, int8 value, uint32 length)
 {
     uint32 bytes_set = 0;
-    char *paddress = (char *)address;
+    cstring paddress = (cstring)address;
 
     while(bytes_set < length)
     {
@@ -37,8 +37,8 @@ uint32 MemorySet(void *address, char value, uint32 length)
 uint32 MemoryCopy(void *to_address, void *from_address, uint32 length_in_bytes)
 {
     uint32 bytes_copied = 0;
-    char *pto = (char *)to_address;
-    char *pfrom = (char *)from_address;
+    cstring pto = (cstring )to_address;
+    cstring pfrom = (cstring )from_address;
 
     while(length_in_bytes - bytes_copied)
     {
@@ -49,10 +49,10 @@ uint32 MemoryCopy(void *to_address, void *from_address, uint32 length_in_bytes)
     return bytes_copied;
 }
 
-bit *ByteToBits(char byte, bit *bit_array)
+bit *ByteToBits(int8 byte, bit *bit_array)
 {
     static bit bits[8];
-    unsigned char bit;
+    uint8 bit;
     
     for(bit = 0; bit < 8; bit++)
     {
@@ -61,7 +61,7 @@ bit *ByteToBits(char byte, bit *bit_array)
 
     if(bit_array)
     {
-        MemoryCopy((char *)bit_array, (char *)bits, sizeof(bits));
+        MemoryCopy((cstring )bit_array, (cstring )bits, sizeof(bits));
         return bit_array;
     }
 
@@ -71,7 +71,7 @@ bit *ByteToBits(char byte, bit *bit_array)
 byte BitsToByte(bit *bits)
 {
     byte byte;
-    unsigned char bit;
+    uint8 bit;
 
     byte.value = 0x00;
 
