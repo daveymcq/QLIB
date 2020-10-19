@@ -25,6 +25,23 @@
 #define false 0x00
 #endif
 
+#ifdef BIT
+#undef BIT
+#endif
+
+#ifdef bit
+#undef bit
+#endif
+
+#ifdef BYTE
+#undef BYTE
+#endif
+
+#ifdef byte
+#undef byte
+#endif
+
+
 typedef enum _INTFMT
 {
     FMT_INT_BINARY = 2,
@@ -39,7 +56,7 @@ typedef struct _BIT
 {
     bool value : 1; 
 
-} BIT, bit;
+} QBIT, qbit;
 
 typedef union _BYTE
 {
@@ -58,7 +75,13 @@ typedef union _BYTE
 
     int8 value;
 
-} BYTE, byte;
+} QBYTE, qbyte;
+
+#define BIT QBIT
+#define bit qbit
+
+#define BYTE QBYTE
+#define byte qbyte
 
 #pragma pack(pop)
 

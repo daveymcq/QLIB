@@ -34,6 +34,14 @@ uint32 StringLength(const cstring str)
     return length;
 }
 
+// Join two strings.
+
+cstring StringConcat(cstring str1, cstring str2)
+{
+    CopyString(str1 + StringLength(str1), str2, StringLength(str2));
+    return str1;
+}
+
 /* Checks equality of two c-strings. */
 
 bool StringCompare(const cstring string_a, const cstring string_b, bool case_sensitive)
@@ -93,20 +101,27 @@ int32 FindFirstOccurrenceOfString(const cstring haystack, const cstring needle, 
 
 /* Checks if a string is a decimal. */
 
-bool IsDecimal(const cstring str)
+bool IsNumeric(const cstring str)
 {
     bool numeric = (str) ? true : false;
-    cstring tmpstr = (cstring)str;
+    cstring pstr = (cstring)str;
     uint32 index = 0;
+    bool hex = ((*pstr == '0') && (*(pstr + 1) == 'x'));
 
-    while((*tmpstr) && (numeric))
+    while((*pstr) && (numeric))
     {
-        numeric = (((*tmpstr >= '0') && (*tmpstr <= '9')) ||
-                   ((index == 0) && (*tmpstr == '-')) ||
-                   ((*tmpstr == '.')));
+        numeric = (((*pstr >= '0') && (*pstr <= '9')) ||
+                   ((index == 0) && (*pstr == '-')) ||
+                   ((*pstr == '.')));
+
+        if(hex)
+        {
+            numeric = numeric || (((*pstr >= 'a') && (*pstr <= 'f')) ||
+                                  ((*pstr >= 'A') && (*pstr <= 'F')));
+        }
 
         index++;
-        tmpstr++;
+        pstr++;
     }
 
     return numeric;
