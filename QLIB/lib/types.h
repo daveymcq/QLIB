@@ -1,20 +1,48 @@
 #ifndef _QLIB_TYPES_H
 #define _QLIB_TYPES_H
 
-#define uint8 unsigned char
-#define uint16 unsigned short
-#define uint32 unsigned int
-#define uint64 unsigned long long
+#ifndef uint8
+    #define uint8 unsigned char
+#endif
 
-#define int8 char
-#define int16 short
-#define int32 int
-#define int64 long long
+#ifndef uint16
+    #define uint16 unsigned short
+#endif
+
+#ifndef uint32
+   #define uint32 unsigned int
+#endif
+
+#ifndef uint64
+    #define uint64 unsigned long long
+#endif
+
+
+#ifndef int8
+    #define int8 char
+#endif
+
+#ifndef int16
+    #define int16 short
+#endif
+
+#ifndef int32
+   #define int32 int
+#endif
+
+#ifndef int64
+    #define int64 long long
+#endif
 
 #if defined(_MSC_VER)
     #if (_MSC_VER >= 1400)
-        #define uint64 __uint64
-        #define int64 __int64
+        #ifndef uint64
+             #define uint64 unsigned __int64
+        #endif
+        
+        #ifndef int64
+             #define int64 __int64
+        #endif
     #endif
 #endif
 

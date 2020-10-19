@@ -70,7 +70,7 @@ int32 FindFirstOccurrenceOfString(const cstring haystack, const cstring needle, 
     uint32 needle_length = StringLength(needle);
     uint32 haystack_length = StringLength(haystack);
 
-    if(haystack_length > 2048)
+    if(haystack_length >= 2048)
     {
         return -1; 
     }
@@ -82,12 +82,12 @@ int32 FindFirstOccurrenceOfString(const cstring haystack, const cstring needle, 
 
     while(index < haystack_length)
     {
-        uint32 len = StringLength(haystack);
-        char haystack_section[len + 1];
-        CopyString((cstring)haystack_section, (cstring)haystack, len);
-        haystack_section[needle_length] = 0;
+        char haystack_buffer[2048];
+ 
+        CopyString((cstring)haystack_buffer, (cstring)haystack, haystack_length);
+        haystack_buffer[needle_length] = 0;
 
-        if(StringCompare(haystack_section, needle, case_sensitive))
+        if(StringCompare(haystack_buffer, needle, case_sensitive))
         {
             return index; 
         }
