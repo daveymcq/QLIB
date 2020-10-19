@@ -11,34 +11,41 @@
 #define int32 int
 #define int64 long long
 
+#if defined(_MSC_VER)
+    #if (_MSC_VER >= 1400)
+        #define uint64 __uint64
+        #define int64 __int64
+    #endif
+#endif
+
 #define cstring char *
 
 #ifndef bool
-#define bool unsigned char
+    #define bool unsigned char
 #endif
 
 #ifndef true
-#define true 0x01
+    #define true 0x01
 #endif
 
 #ifndef false
-#define false 0x00
+    #define false 0x00
 #endif
 
 #ifdef BIT
-#undef BIT
+    #undef BIT
 #endif
 
 #ifdef bit
-#undef bit
+    #undef bit
 #endif
 
 #ifdef BYTE
-#undef BYTE
+    #undef BYTE
 #endif
 
 #ifdef byte
-#undef byte
+    #undef byte
 #endif
 
 
