@@ -99,7 +99,7 @@ int32 FindFirstOccurrenceOfString(const cstring haystack, const cstring needle, 
     return 0; 
 }
 
-/* Checks if a string is a decimal. */
+/* Checks if a string is numeric. */
 
 bool IsNumeric(const cstring str)
 {
@@ -107,6 +107,11 @@ bool IsNumeric(const cstring str)
     cstring pstr = (cstring)str;
     uint32 index = 0;
     bool hex = ((*pstr == '0') && (*(pstr + 1) == 'x'));
+
+    if(hex)
+    {
+        pstr += 2;
+    }
 
     while((*pstr) && (numeric))
     {
