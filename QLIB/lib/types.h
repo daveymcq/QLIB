@@ -1,6 +1,18 @@
 #ifndef _QLIB_TYPES_H
 #define _QLIB_TYPES_H
 
+#if defined(_MSC_VER)
+    #if (_MSC_VER >= 1400)
+        #ifndef uint64
+             #define uint64 unsigned __int64
+        #endif
+        
+        #ifndef int64
+             #define int64 __int64
+        #endif
+    #endif
+#endif
+
 #ifndef uint8
     #define uint8 unsigned char
 #endif
@@ -38,19 +50,15 @@
 #endif
 
 #ifndef null
-    #define null 0
+    #define null 0x00
 #endif
 
-#if defined(_MSC_VER)
-    #if (_MSC_VER >= 1400)
-        #ifndef uint64
-             #define uint64 unsigned __int64
-        #endif
-        
-        #ifndef int64
-             #define int64 __int64
-        #endif
-    #endif
+#ifndef EXIT_SUCCESS
+    #define EXIT_SUCCESS 0x00
+#endif
+
+#ifndef EXIT_FAILURE
+    #define EXIT_FAILURE 0xff
 #endif
 
 #ifndef string
@@ -62,7 +70,7 @@
 #endif
 
 #ifndef bool
-    #define bool unsigned char
+    #define bool uint8
 #endif
 
 #ifndef true
@@ -77,16 +85,8 @@
     #undef BIT
 #endif
 
-#ifdef bit
-    #undef bit
-#endif
-
 #ifdef BYTE
     #undef BYTE
-#endif
-
-#ifdef byte
-    #undef byte
 #endif
 
 typedef enum _INTFMT
@@ -101,14 +101,17 @@ typedef enum _INTFMT
 
 typedef struct _BIT
 {
-    bool value : 1; 
+    bool value : 1;
 
-} QBIT, qbit;
+} _BIT_;
 
 typedef union _BYTE
 {
+    uint8 value;
+
     struct _BITS
     {
+        bool bit_0 : 1;
         bool bit_1 : 1;
         bool bit_2 : 1;
         bool bit_3 : 1;
@@ -116,19 +119,13 @@ typedef union _BYTE
         bool bit_5 : 1;
         bool bit_6 : 1;
         bool bit_7 : 1;
-        bool bit_8 : 1;
 
     } bits;
 
-    int8 value;
+} _BYTE_;
 
-} QBYTE, qbyte;
-
-#define BIT QBIT
-#define bit qbit
-
-#define BYTE QBYTE
-#define byte qbyte
+#define BIT _BIT_
+#define BYTE _BYTE_
 
 #pragma pack(pop)
 
